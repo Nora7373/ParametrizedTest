@@ -27,7 +27,7 @@ public class SearchKursyPageObjectTest extends ТestBase {
     @ParameterizedTest(name = "Для поискового запроса {0} должен отдавать не пустой список карточек")
     @Tag("WEB")
     @DisplayName("name")
-    void searchCourseByName(String searchQuery) {
+    void searchCourseByNameTest(String searchQuery) {
         kursyPage.setSearchTextInput(searchQuery)
                  .checkSearchResultMoreZero();
     }
@@ -41,7 +41,7 @@ public class SearchKursyPageObjectTest extends ТestBase {
     @ParameterizedTest(name = "Для поискового запроса {0},в ответе должна быть курс под названием: {1}")
     @Tag("WEB")
     @Tag("SMOKE")
-    void searchResultsShouldContainExpectedCourseName(String searchQuery, String expectedCourseName) {
+    void searchResultsShouldContainExpectedCourseNameTest(String searchQuery, String expectedCourseName) {
         kursyPage.setSearchTextInput(searchQuery)
                  .checkSearchResult(expectedCourseName);
     }
@@ -50,12 +50,12 @@ public class SearchKursyPageObjectTest extends ТestBase {
     @ParameterizedTest(name = "Чтение данных для теста из файла. Для поискового запроса {0},в ответе должен быть курс под названием: {1}")
     @Tag("WEB")
     @Tag("SMOKE")
-    void readFromFileSearchResultsShouldContainExpectedCourseName(String searchQuery, String expectedCourseName) {
+    void readFromFileSearchResultsShouldContainExpectedCourseNameTest(String searchQuery, String expectedCourseName) {
         kursyPage.setSearchTextInput(searchQuery)
                  .checkSearchResult(expectedCourseName);
     }
 
-    static Stream<Arguments> readFromSourceSearchResultsShouldContainExpectedCourseName() {
+    static Stream<Arguments> readFromSourceSearchResultsShouldContainExpectedCourseNameTest() {
         return Stream.of(
             Arguments.of("Python", "Алгоритмы и структуры данных на Python. Базовый курс"),
             Arguments.of("JavaScript", "Fullstack-разработчик на JavaScript")
@@ -65,7 +65,7 @@ public class SearchKursyPageObjectTest extends ТestBase {
     @ParameterizedTest
     @Tag("WEB")
     @Tag("REGRESSION")
-    void readFromSourceSearchResultsShouldContainExpectedCourseName(String searchQuery, String expectedCourseName) {
+    void readFromSourceSearchResultsShouldContainExpectedCourseNameTest(String searchQuery, String expectedCourseName) {
         kursyPage.setSearchTextInput(searchQuery)
                  .checkSearchResult(expectedCourseName);
     }

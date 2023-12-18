@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
-import test.pages.SearchKursyPage;
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -27,7 +26,7 @@ public class SearchKursyTest extends ТestBase {
     @ParameterizedTest(name = "Для поискового запроса {0} должен отдавать не пустой список карточек")
     @Tag("WEB")
     @DisplayName("name")
-    void searchCourseByName(String searchQuery) {
+    void searchCourseByNameTest(String searchQuery) {
         $("#qplSKIW").setValue(searchQuery).pressEnter();
         $(".kurses_search_sections").$$(".course-element").shouldBe(sizeGreaterThan(0));
     }
@@ -41,7 +40,7 @@ public class SearchKursyTest extends ТestBase {
     @ParameterizedTest(name = "Для поискового запроса {0},в ответе должна быть курс под названием: {1}")
     @Tag("WEB")
     @Tag("SMOKE")
-    void searchResultsShouldContainExpectedCourseName(String searchQuery, String expectedCourseName) {
+    void searchResultsShouldContainExpectedCourseNameTest(String searchQuery) {
         $("#qplSKIW").setValue(searchQuery).pressEnter();
         $(".kurses_search_sections").shouldHave(text(searchQuery));
     }
@@ -50,12 +49,12 @@ public class SearchKursyTest extends ТestBase {
     @ParameterizedTest(name = "Чтение данных для теста из файла. Для поискового запроса {0},в ответе должен быть курс под названием: {1}")
     @Tag("WEB")
     @Tag("SMOKE")
-    void readFromFileSearchResultsShouldContainExpectedCourseName(String searchQuery, String expectedCourseName) {
+    void readFromFileSearchResultsShouldContainExpectedCourseNameTest(String searchQuery) {
         $("#qplSKIW").setValue(searchQuery).pressEnter();
         $(".kurses_search_sections").shouldHave(text(searchQuery));
     }
 
-    static Stream<Arguments> readFromSourceSearchResultsShouldContainExpectedCourseName() {
+    static Stream<Arguments> readFromSourceSearchResultsShouldContainExpectedCourseNameTest() {
         return Stream.of(
             Arguments.of("Python", "Алгоритмы и структуры данных на Python. Базовый курс"),
             Arguments.of("JavaScript", "Fullstack-разработчик на JavaScript")
@@ -65,7 +64,7 @@ public class SearchKursyTest extends ТestBase {
     @ParameterizedTest
     @Tag("WEB")
     @Tag("REGRESSION")
-    void readFromSourceSearchResultsShouldContainExpectedCourseName(String searchQuery, String expectedCourseName) {
+    void readFromSourceSearchResultsShouldContainExpectedCourseNameTest(String searchQuery) {
         $("#qplSKIW").setValue(searchQuery).pressEnter();
         $(".kurses_search_sections").shouldHave(text(searchQuery));
     }
